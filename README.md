@@ -1,118 +1,121 @@
-# AI-Powered Customer Support & FAQ Chatbot
+# Codec Support AI
 
-A production-ready, context-aware AI Chatbot designed for customer support and FAQ automation. Built with **Python**, **NLTK**, **Hugging Face Transformers**, **Flask**, and **SQLite** as part of the **Codec Technologies Internship**.
+### AI-Powered Customer Support & FAQ Chatbot
 
----
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-3.x-000000?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![NLP](https://img.shields.io/badge/NLP-NLTK-154F5C)](https://www.nltk.org/)
+[![Transformers](https://img.shields.io/badge/AI-Transformers-FFD21E?logo=huggingface&logoColor=black)](https://huggingface.co/)
+[![SQLite](https://img.shields.io/badge/Database-SQLite-003B57?logo=sqlite&logoColor=white)](https://www.sqlite.org/)
+[![Tests](https://img.shields.io/badge/Tests-14%20Passing-success)](https://pytest.org/)
+[![Deployment](https://img.shields.io/badge/Deployment-Render-46E3B7)](https://render.com/)
 
-## 📌 Project Overview
+> A context-aware AI customer support chatbot built with Python, NLP, Transformer-based semantic matching, Flask, and SQLite.
 
-This project provides an intelligent customer support chatbot that uses dense semantic embeddings and Natural Language Processing (NLP) techniques to comprehend user intent, resolve elliptical follow-up questions using session context, and log interactions securely to a SQLite database.
+**Live Demo:**  
+https://codec-ai-support.onrender.com
 
-### 🌟 Key Highlights
-- **Semantic Intent Matching**: Uses `sentence-transformers/all-MiniLM-L6-v2` (Hugging Face) for fast, accurate semantic matching on CPU without needing huge GPU resources.
-- **NLTK Pipeline**: Tokenization, lemmatization, stopword filtering, POS tagging, and token overlap scoring.
-- **Multi-Turn Context Tracking**: Accurately handles context-dependent follow-up queries (e.g., `"How can I reset my password?"` followed by `"What if I don't receive the email?"`).
-- **Confidence Thresholds**: Distinguishes high-confidence answers, medium-confidence suggestions, and graceful fallback responses for out-of-scope inquiries.
-- **Persistent Interaction Logging**: Stores sessions and detailed conversation turns (session ID, user query, response, intent, confidence, context topic, timestamp) in SQLite.
-- **Modern Responsive Web UI**: Clean, accessible chat interface with real-time feedback, quick prompt suggestions, and session reset.
-
----
-
-## 🛠️ Technology Stack
-
-| Component | Technology | Purpose |
-| :--- | :--- | :--- |
-| **Language** | Python 3.10+ | Core programming language |
-| **NLP Pipeline** | NLTK | Tokenization, lemmatization, stopword removal, POS tagging |
-| **AI Model** | Hugging Face Transformers (`all-MiniLM-L6-v2`) | Semantic embeddings and similarity scoring |
-| **Backend Framework** | Flask | RESTful API endpoints and template serving |
-| **Database** | SQLite3 | Persistent session and interaction logging |
-| **Frontend** | HTML5, CSS3, Modern Vanilla JS | Responsive chat interface |
-| **Testing** | Pytest | Automated unit and integration testing |
-| **Production WSGI** | Gunicorn | Production-ready HTTP WSGI server |
+**GitHub Repository:**  
+https://github.com/Sai-Dharla/Codec_Ai_Support
 
 ---
 
-## 📂 Project Structure
+## Overview
+
+**Codec Support AI** is an AI-powered customer support and FAQ chatbot designed to understand user questions, identify their intent, provide relevant responses, and maintain conversation context across multiple turns.
+
+Unlike a basic keyword or rule-based chatbot, the application combines **Natural Language Processing (NLP)** with **Transformer-based semantic embeddings** to match user questions with relevant FAQ knowledge.
+
+The chatbot also maintains session context, allowing it to understand follow-up questions that depend on previous messages.
+
+For example:
+
+> **User:** How can I reset my password?
+
+> **Bot:** Provides password-reset instructions.
+
+> **User:** What if I don't receive the email?
+
+The chatbot can interpret **"the email"** in the context of the previous password-reset conversation.
+
+---
+
+## Internship Context
+
+This project was developed as part of my **Python Developer Internship at Codec Technologies**.
+
+The project focuses on practical Python development, NLP integration, backend API development, database integration, automated testing, and cloud deployment.
+
+---
+
+## Key Features
+
+- Context-aware multi-turn conversations
+- Natural Language Processing using NLTK
+- Transformer-based semantic matching
+- FAQ knowledge-base integration
+- Session and conversation management
+- Confidence-based response handling
+- Graceful fallback for unclear queries
+- SQLite-based interaction logging
+- REST API for chatbot communication
+- Responsive web-based chat interface
+- Quick customer-support prompts
+- Password-reset support
+- Order-related support
+- Refund-related support
+- Payment-related support
+- Automated unit and integration testing
+- Production deployment with Gunicorn
+- CPU-oriented Transformer model configuration
+
+---
+
+## How It Works
+
+The chatbot follows a modular processing pipeline:
 
 ```text
-ai-powered-chatbot/
-│
-├── app/
-│   ├── __init__.py          # Flask application factory
-│   ├── routes.py            # API & web view routes
-│   ├── chatbot/
-│   │   ├── __init__.py
-│   │   ├── nlp.py           # NLTK tokenization & preprocessing
-│   │   ├── model.py         # Hugging Face Transformer embeddings
-│   │   ├── context.py       # Multi-turn dialogue context manager
-│   │   └── response.py      # Response orchestration & thresholds
-│   ├── database/
-│   │   ├── __init__.py
-│   │   ├── db.py            # SQLite helper & query methods
-│   │   └── models.py        # Data models
-│   ├── templates/
-│   │   └── index.html       # Chat web interface
-│   └── static/
-│       ├── css/
-│       │   └── style.css    # Clean responsive styling
-│       └── js/
-│           └── chatbot.js   # Client-side chat logic
-│
-├── data/
-│   ├── faqs.json            # Knowledge base with context branches
-│   └── .gitkeep
-│
-├── tests/
-│   ├── test_nlp.py          # NLTK pipeline tests
-│   ├── test_database.py     # SQLite interaction logging tests
-│   └── test_chatbot.py      # Multi-turn context & API tests
-│
-├── .env.example             # Environment template
-├── .gitignore               # Git hygiene rules
-├── app.py                   # Application entrypoint
-├── config.py                # Configuration management
-├── requirements.txt         # Project dependencies
-├── Procfile                 # Cloud deployment config (Render / Heroku)
-├── runtime.txt              # Deployment python version
-└── README.md                # Documentation
-```
-
----
-
-## 🔄 Functional Architecture Flow
-
-```text
-       User Question
-            │
-            ▼
-    [Web Chat Interface]
-            │ (JSON over HTTP)
-            ▼
-       [Flask API]
-            │
-            ▼
-   [NLTK NLP Pipeline] ──> Tokenize, Lemmatize, POS Tag, Filter Stopwords
-            │
-            ▼
-  [Hugging Face Model] ──> Dense Embedding (`all-MiniLM-L6-v2`)
-            │
-            ▼
-   [Context Manager]   ──> Detect active topic & follow-up coreference
-            │
-            ▼
-  [Response Generator] ──> Hybrid scoring & Confidence threshold check
-            │
-            ▼
-    [SQLite Database]  ──> Log Session ID, Message, Response, Intent, Timestamp
-            │
-            ▼
-  [Return to UI Client]
-```
-
----
-
-
-## 👨‍💻 Internship Project Submission
-Developed for the **Codec Technologies Internship**. Satisfies all official guidelines for intelligent NLP/AI chatbot architecture, Hugging Face Transformers integration, NLTK preprocessing, SQLite logging, and multi-turn context retention.
-
+                    User Question
+                         │
+                         ▼
+              ┌─────────────────────┐
+              │   Web Chat Interface │
+              └──────────┬──────────┘
+                         │
+                         ▼
+              ┌─────────────────────┐
+              │     Flask API       │
+              └──────────┬──────────┘
+                         │
+                         ▼
+              ┌─────────────────────┐
+              │   NLTK Processing   │
+              │ Tokenization / NLP  │
+              └──────────┬──────────┘
+                         │
+                         ▼
+              ┌─────────────────────┐
+              │ Transformer Model   │
+              │ Semantic Embedding  │
+              └──────────┬──────────┘
+                         │
+                         ▼
+              ┌─────────────────────┐
+              │ Context Management  │
+              │ Session / Follow-up │
+              └──────────┬──────────┘
+                         │
+                         ▼
+              ┌─────────────────────┐
+              │ Response Selection  │
+              │ + Confidence Check  │
+              └──────────┬──────────┘
+                         │
+                         ▼
+              ┌─────────────────────┐
+              │    SQLite Logging   │
+              └──────────┬──────────┘
+                         │
+                         ▼
+                  Response to User
