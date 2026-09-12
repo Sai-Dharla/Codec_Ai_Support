@@ -11,27 +11,29 @@ class SemanticModel:
     """
     Hugging Face Transformers semantic embedding engine.
     Computes dense embeddings using Hugging Face AutoModel and AutoTokenizer
-    (sentence-transformers/all-MiniLM-L6-v2) with mean pooling and L2 normalization.
+    (sentence-transformers/all-MiniLM-L6-v2) explicitly on CPU with mean pooling and L2 normalization.
     """
     def __init__(self, model_name: str = 'sentence-transformers/all-MiniLM-L6-v2'):
         self.model_name = model_name
         self.tokenizer = None
         self.model = None
+        self.device = torch.device('cpu')  # Force CPU execution for memory efficiency and cloud deployment
         self._load_model()
 
     def _load_model(self):
         try:
-            logger.info(f"Loading Hugging Face model & tokenizer: {self.model_name}")
+            logger.info(f"Loading Hugging Face model & tokenizer explicitly on CPU: {self.model_name}")
             self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
             self.model = AutoModel.from_pretrained(self.model_name)
+            self.model.to(self.device)
             self.model.eval()
-            logger.info("Hugging Face model loaded successfully.")
+            logger.info("Hugging Face model loaded successfully on CPU.")
         except Exception as e:
             logger.error(f"Error loading Transformers model: {e}", exc_info=True)
             raise RuntimeError(f"Failed to load Transformer model '{self.model_name}': {e}")
 
     def encode(self, texts: List[str]) -> np.ndarray:
-        """Generates normalized dense embeddings for input texts."""
+        """Generates normalized dense embeddings for input texts on CPU."""
         if not texts:
             return np.empty((0, 384))
 
@@ -43,6 +45,8 @@ class SemanticModel:
                 max_length=128,
                 return_tensors='pt'
             )
+            # Move inputs to CPU device
+            encoded_input = {k: v.to(self.device) for k, v in encoded_input.items()}
             model_output = self.model(**encoded_input)
             
             # Mean Pooling - Take attention mask into account for correct averaging
@@ -62,4 +66,3 @@ class SemanticModel:
             query_embedding = query_embedding.reshape(1, -1)
         similarities = np.dot(doc_embeddings, query_embedding.T).flatten()
         return similarities
-
