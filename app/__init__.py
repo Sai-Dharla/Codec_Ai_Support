@@ -39,3 +39,5 @@ def create_app(config_class=Config) -> Flask:
 
     return app
 
+# WSGI application instance for gunicorn / package level import
+app = create_app()
