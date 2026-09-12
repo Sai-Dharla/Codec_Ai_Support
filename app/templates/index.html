@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codec Support AI - Your AI Customer Support Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background subtle shapes -->
+    <div class="bg-shape bg-shape-top-left"></div>
+    <div class="bg-shape bg-shape-bottom-right"></div>
+
+    <div class="main-container">
+        <!-- 1. Header -->
+        <header class="app-header">
+            <div class="header-brand">
+                <div class="bot-icon-badge">
+                    <svg viewBox="0 0 48 48" class="robot-avatar-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="8" y="14" width="32" height="26" rx="10" fill="#2563eb" />
+                        <path d="M24 6V14" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="24" cy="5" r="3" fill="#60a5fa"/>
+                        <rect x="14" y="20" width="20" height="14" rx="6" fill="#0f172a" />
+                        <circle cx="19" cy="27" r="2.5" fill="#38bdf8" />
+                        <circle cx="29" cy="27" r="2.5" fill="#38bdf8" />
+                        <rect x="5" y="22" width="3" height="8" rx="1.5" fill="#60a5fa"/>
+                        <rect x="40" y="22" width="3" height="8" rx="1.5" fill="#60a5fa"/>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <h1><span class="brand-dark">Codec</span> <span class="brand-blue">Support AI</span></h1>
+                    <p class="brand-subtitle">Your AI Customer Support Assistant</p>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <div class="online-pill">
+                    <span class="green-indicator"></span>
+                    <span>Online</span>
+                </div>
+                <button id="new-chat-btn" class="btn-new-chat" title="Start a fresh conversation">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                    </svg>
+                    <span>New Chat</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- 2. Hero Section with Hand-Drawn Annotations -->
+        <section class="hero-section">
+            <!-- Left Annotation -->
+            <div class="hand-annotation left-annotation">
+                <span class="hand-text">.Here<br>To Help<br>You!</span>
+                <svg class="hand-arrow-left" width="55" height="40" viewBox="0 0 60 45" fill="none">
+                    <path d="M10 5 C 10 35, 45 40, 52 32" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" fill="none" stroke-dasharray="0"/>
+                    <path d="M44 37 L 54 31 L 52 20" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+            </div>
+
+            <!-- Right Annotation -->
+            <div class="hand-annotation right-annotation">
+                <span class="hand-text">Fast<br>Accurate<br>Reliable</span>
+                <svg class="hand-arrow-right" width="55" height="40" viewBox="0 0 60 45" fill="none">
+                    <path d="M50 5 C 50 35, 15 40, 8 32" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+                    <path d="M16 37 L 6 31 L 8 20" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+            </div>
+
+            <div class="hero-content">
+                <h2 class="hero-hello">Hello! <span class="wave-emoji">👋</span></h2>
+                <h3 class="hero-title">I'm your <span class="gradient-text">AI Customer Support Assistant</span></h3>
+                <p class="hero-desc">
+                    Ask me anything about your account, orders, payments, refunds, or technical issues.<br>
+                    I'm here to help you 24/7.
+                </p>
+            </div>
+        </section>
+
+        <!-- 3. Quick Action Cards -->
+        <section class="quick-cards-grid">
+            <button class="quick-card card-blue action-chip" data-query="How can I reset my password?">
+                <div class="card-icon-wrapper icon-blue">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7 14A5 5 0 1 1 12 9H21V13H19V17H15V13H11.83A5 5 0 0 1 7 14ZM7 6A3 3 0 1 0 7 12A3 3 0 0 0 7 6Z"/>
+                    </svg>
+                </div>
+                <div class="card-text">
+                    <h4>Reset Password</h4>
+                    <p>Get help accessing your account</p>
+                </div>
+            </button>
+
+            <button class="quick-card card-green action-chip" data-query="How can I track my order?">
+                <div class="card-icon-wrapper icon-green">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                        <line x1="12" y1="22.08" x2="12" y2="12"/>
+                    </svg>
+                </div>
+                <div class="card-text">
+                    <h4>Track Order</h4>
+                    <p>Check your order status</p>
+                </div>
+            </button>
+
+            <button class="quick-card card-orange action-chip" data-query="What is your refund policy?">
+                <div class="card-icon-wrapper icon-orange">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="23 4 23 10 17 10"/>
+                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+                    </svg>
+                </div>
+                <div class="card-text">
+                    <h4>Refund Policy</h4>
+                    <p>Learn about refunds</p>
+                </div>
+            </button>
+
+            <button class="quick-card card-purple action-chip" data-query="What payment methods do you accept?">
+                <div class="card-icon-wrapper icon-purple">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="4" width="22" height="16" rx="3" ry="3"/>
+                        <line x1="1" y1="10" x2="23" y2="10"/>
+                        <line x1="5" y1="15" x2="9" y2="15"/>
+                    </svg>
+                </div>
+                <div class="card-text">
+                    <h4>Payment Methods</h4>
+                    <p>View available options</p>
+                </div>
+            </button>
+        </section>
+
+        <!-- 4. Main Chat Box Container -->
+        <main class="chat-container">
+            <div class="messages-viewport" id="chat-messages">
+                <!-- Initial Welcome Message -->
+                <div class="message-row bot-row">
+                    <div class="bot-msg-avatar">
+                        <svg viewBox="0 0 48 48" class="bot-avatar-inner" fill="none">
+                            <rect x="8" y="14" width="32" height="26" rx="10" fill="#2563eb" />
+                            <path d="M24 6V14" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/>
+                            <circle cx="24" cy="5" r="3" fill="#60a5fa"/>
+                            <rect x="14" y="20" width="20" height="14" rx="6" fill="#0f172a" />
+                            <circle cx="19" cy="27" r="2.5" fill="#38bdf8" />
+                            <circle cx="29" cy="27" r="2.5" fill="#38bdf8" />
+                            <rect x="5" y="22" width="3" height="8" rx="1.5" fill="#60a5fa"/>
+                            <rect x="40" y="22" width="3" height="8" rx="1.5" fill="#60a5fa"/>
+                        </svg>
+                    </div>
+                    <div class="msg-bubble-group">
+                        <div class="msg-bubble bot-bubble">
+                            <p>Hello! 👋 I'm your AI Customer Support Assistant.<br>How can I help you today?</p>
+                        </div>
+                        <span class="msg-time">Just now</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Typing indicator -->
+            <div class="typing-indicator-row" id="typing-indicator" style="display: none;">
+                <div class="bot-msg-avatar small-avatar">
+                    <div class="avatar-dot"></div>
+                </div>
+                <div class="typing-bubble">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+
+            <!-- Input Bar -->
+            <div class="chat-input-bar">
+                <button type="button" class="btn-attach" title="Attach file (optional)" id="attach-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+                    </svg>
+                </button>
+                <form id="chat-form" class="chat-form-inner" autocomplete="off">
+                    <input 
+                        type="text" 
+                        id="user-input" 
+                        placeholder="Type your question here (e.g. How can I reset my password?)" 
+                        required
+                    />
+                    <button type="submit" id="send-btn" class="btn-send-circle" aria-label="Send Message">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </main>
+
+        <!-- 5. Popular Questions Pills -->
+        <section class="popular-questions-section">
+            <span class="popular-label">Popular questions:</span>
+            <div class="popular-pills-list">
+                <button class="popular-pill action-chip" data-query="How do I reset my password?">How do I reset my password?</button>
+                <button class="popular-pill action-chip" data-query="Where is my order?">Where is my order?</button>
+                <button class="popular-pill action-chip" data-query="How do I get a refund?">How do I get a refund?</button>
+                <button class="popular-pill action-chip" data-query="What payment methods do you accept?">What payment methods do you accept?</button>
+            </div>
+        </section>
+
+        <!-- 6. Bottom Features Banner -->
+        <footer class="bottom-features-footer">
+            <div class="feature-item">
+                <div class="feature-icon icon-bg-blue">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1ZM12 11.99H19C18.47 16.11 15.72 19.78 12 20.93V12H5V6.3L12 3.19V11.99Z"/>
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <h5>Secure & Reliable</h5>
+                    <p>Your privacy is our priority</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon icon-bg-purple">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20ZM12.5 7H11V13L16.25 16.15L17 14.92L12.5 12.25V7Z"/>
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <h5>Available 24/7</h5>
+                    <p>Get help anytime</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon icon-bg-green">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7 2V13H10V22L17 10H13L17 2H7Z"/>
+                    </svg>
+                </div>
+                <div class="feature-text">
+                    <h5>Powered by NLP & Transformers</h5>
+                    <p>Intelligent. Accurate. Helpful.</p>
+                </div>
+            </div>
+
+            <div class="built-by-item">
+                <div class="built-text">
+                    <span class="built-for-label">Built for</span>
+                    <span class="built-for-name">Codec Technologies</span>
+                </div>
+                <div class="heart-icon-wrapper">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#4338ca">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+</body>
+</html>
